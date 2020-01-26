@@ -1,0 +1,21 @@
+<ng-container *ngIf="type === 'button'">
+<ion-button class="open-on-kodi" color="nomos" expand="block" (click)="open()">
+  <ion-icon name="play" color="light" slot="start"></ion-icon>
+  <ion-text color="light">{{ 'shared.buttonOpenKodi' | translate }}</ion-text>
+</ion-button>
+</ng-container>
+
+<ng-container *ngIf="type === 'item-option'">
+  <div class="ion-item-options">
+    <ion-item-option color="nomos" (click)="open()">
+      <div class="ion-item-detail">
+        <ion-icon
+          name="play"
+        ></ion-icon>
+        <ion-text>
+          Nomos
+        </ion-text>
+      </div>
+    </ion-item-option>
+  </div>
+</ng-container>

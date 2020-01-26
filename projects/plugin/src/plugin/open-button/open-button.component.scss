@@ -1,0 +1,37 @@
+.ion-color-nomos {
+  --ion-color-base: #4b1d52;
+  --ion-color-base-rgb: 53, 66, 82;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #483247;
+  --ion-color-tint: #635260;
+}
+
+
+ion-button  {
+  --ripple-color: var(--ion-color-nomos);
+  --background-activated: var(--ion-color-nomos);
+  --background-focused: var(--ion-color-nomos);
+}
+
+.ion-item-options {
+  display: flex;
+  height: 100%;
+
+  .ion-item-detail {
+    width: 60px;
+    display: grid;
+    text-align: center;
+
+    ion-icon {
+      font-size: 2em;
+      width: 100%;
+    }
+
+    ion-text {
+      margin-top: 3px;
+      font-size: 8px;
+      text-transform: none;
+    }
+  }
+}

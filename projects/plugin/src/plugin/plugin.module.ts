@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { PluginService } from './services/plugin.service';
 import { MovieButtonComponent } from './movie-button/movie-button.component';
 
-import { PluginBaseModule, ToastService } from '@wako-app/mobile-sdk';
+import { PluginBaseModule } from '@wako-app/mobile-sdk';
 import { SettingsComponent } from './settings/settings.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { EpisodeButtonComponent } from './episode-button/episode-button.component';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { OpenButtonComponent } from './open-button/open-button.component';
 import { KodiPluginService } from './services/kodi-plugin.service';
 import { EpisodeItemOptionComponent } from './episode-item-option/episode-item-option.component';
+import { ToastService } from './services/toast.service';
 
 const components = [MovieButtonComponent, EpisodeButtonComponent, EpisodeItemOptionComponent, SettingsComponent, OpenButtonComponent];
 

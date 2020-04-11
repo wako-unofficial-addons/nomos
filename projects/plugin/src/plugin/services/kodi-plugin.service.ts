@@ -14,13 +14,13 @@ import {
   KodiGetAddonsForm,
   OpenMedia,
   replacer,
-  ToastService,
   WakoCacheService,
   WakoHttpRequestService
 } from '@wako-app/mobile-sdk';
 import { KodiPlugin, KodiPluginList } from '../entities/kodi-plugin';
 import { KodiOpenMedia } from '../entities/kodi-open-media';
 import { logData } from './tools';
+import { ToastService } from './toast.service';
 
 const CACHE_KEY_PLUGINS = 'CACHE_KEY_PLUGINS';
 const CACHE_TIMEOUT_PLUGINS = '1d';
@@ -33,8 +33,7 @@ export class KodiPluginService {
     private actionSheetController: ActionSheetController,
     private modalCtrl: ModalController,
     private translateService: TranslateService
-  ) {
-  }
+  ) {}
 
   async patchStorageKey() {
     const url = await this.storage.get('kodi-plugins-url');
@@ -73,12 +72,12 @@ export class KodiPluginService {
   }
 
   setPlugins(plugins: KodiPluginList, isAutomatic = false) {
-    return this.getPlugins().then(oldPlugins => {
+    return this.getPlugins().then((oldPlugins) => {
       if (oldPlugins && isAutomatic) {
         let areEquals = Object.keys(oldPlugins).length === Object.keys(plugins).length;
 
         if (areEquals) {
-          Object.keys(oldPlugins).forEach(key => {
+          Object.keys(oldPlugins).forEach((key) => {
             const _old = Object.assign({}, oldPlugins[key]);
             const _new = Object.assign({}, plugins[key]);
             _old.enabled = true;
@@ -95,7 +94,7 @@ export class KodiPluginService {
           logData('no changes in plugins');
         }
 
-        Object.keys(oldPlugins).forEach(key => {
+        Object.keys(oldPlugins).forEach((key) => {
           if (plugins.hasOwnProperty(key)) {
             plugins[key].enabled = oldPlugins[key].enabled;
           }
@@ -117,13 +116,13 @@ export class KodiPluginService {
       10000,
       true
     ).pipe(
-      switchMap(pluginList => {
+      switchMap((pluginList) => {
         if (typeof pluginList === 'string' || Object.keys(pluginList).length === 0) {
           return of(false);
         }
 
         if (!isAutomatic) {
-          Object.keys(pluginList).forEach(key => {
+          Object.keys(pluginList).forEach((key) => {
             pluginList[key].enabled = true;
           });
         }
@@ -144,12 +143,12 @@ export class KodiPluginService {
   }
 
   refreshPlugins() {
-    WakoCacheService.get<boolean>(CACHE_KEY_PLUGINS).subscribe(cache => {
+    WakoCacheService.get<boolean>(CACHE_KEY_PLUGINS).subscribe((cache) => {
       if (cache) {
         logData('check plugins later');
         return;
       }
-      this.getPluginUrl().then(url => {
+      this.getPluginUrl().then((url) => {
         if (url) {
           this.setPluginsFromUrl(url, true).subscribe();
         }
@@ -160,7 +159,7 @@ export class KodiPluginService {
   }
 
   getOpenRemoteAfterClickOnPlaySetting() {
-    return this.storage.get(this.getStorageKeyPrefixed('openRemoteAfterClickOnPlay')).then(openRemoteAfterClickOnPlay => {
+    return this.storage.get(this.getStorageKeyPrefixed('openRemoteAfterClickOnPlay')).then((openRemoteAfterClickOnPlay) => {
       return !!openRemoteAfterClickOnPlay;
     });
   }
@@ -171,13 +170,13 @@ export class KodiPluginService {
 
   private getPluginsByCategory(category?: 'movie' | 'episode') {
     return from(this.getPlugins()).pipe(
-      map(list => {
+      map((list) => {
         if (!list) {
           return null;
         }
         const newList: KodiPluginList = {};
 
-        Object.keys(list).forEach(key => {
+        Object.keys(list).forEach((key) => {
           const value = list[key];
           if (!value.enabled) {
             return;
@@ -197,10 +196,10 @@ export class KodiPluginService {
       catchError(() => {
         return of({ addons: [] });
       }),
-      map(plugins => {
+      map((plugins) => {
         const installedPlugins: string[] = [];
 
-        plugins.addons.forEach(addon => {
+        plugins.addons.forEach((addon) => {
           installedPlugins.push(addon.addonid);
         });
         return installedPlugins;
@@ -209,11 +208,11 @@ export class KodiPluginService {
   }
 
   open(kodiOpenMedia: KodiOpenMedia) {
-    let pluginList: KodiPluginList = null;
+    let pluginList: KodiPluginList = {};
 
     KodiAppService.checkAndConnectToCurrentHost()
       .pipe(
-        catchError(err => {
+        catchError((err) => {
           if (err === 'hostUnreachable') {
             this.toastService.simpleMessage('toasts.kodi.hostUnreachable', { hostName: KodiAppService.currentHost.name }, 2000);
           } else {
@@ -224,14 +223,18 @@ export class KodiPluginService {
         switchMap(() => {
           logData('CONNECTED');
 
-          return this.getPluginsByCategory(kodiOpenMedia.category).pipe(tap(list => (pluginList = list)));
+          return this.getPluginsByCategory(kodiOpenMedia.category).pipe(
+            tap((list) => {
+              pluginList = list || {};
+            })
+          );
         }),
         switchMap(() => this.getInstalledPlugins()),
-        map(_installedPlugins => {
+        map((_installedPlugins) => {
           logData('_installedPlugins', _installedPlugins);
           const supportedAndInstalledPlugins = [];
 
-          Object.keys(pluginList).forEach(pluginId => {
+          Object.keys(pluginList).forEach((pluginId) => {
             const pluginDetail = pluginList[pluginId];
             if (_installedPlugins.includes(pluginDetail.plugin)) {
               supportedAndInstalledPlugins.push(pluginId);
@@ -240,8 +243,7 @@ export class KodiPluginService {
           return supportedAndInstalledPlugins;
         })
       )
-      .subscribe(supportedAndInstalledPlugins => {
-
+      .subscribe((supportedAndInstalledPlugins) => {
         logData('supportedAndInstalledPlugins', supportedAndInstalledPlugins);
         if (supportedAndInstalledPlugins.length === 0) {
           this.toastService.simpleMessage('toasts.kodi.noSupportedPluginsInstalled');
@@ -255,7 +257,7 @@ export class KodiPluginService {
         }
 
         const buttons = [];
-        Object.keys(pluginList).forEach(pluginId => {
+        Object.keys(pluginList).forEach((pluginId) => {
           const pluginDetail = pluginList[pluginId];
 
           if (supportedAndInstalledPlugins.includes(pluginId)) {
@@ -279,7 +281,7 @@ export class KodiPluginService {
             header: this.translateService.instant('actionSheets.kodi.openTitle'),
             buttons
           })
-          .then(action => {
+          .then((action) => {
             action.present();
           });
       });
@@ -325,7 +327,7 @@ export class KodiPluginService {
   }
 
   private openOnPlugin(pluginKey: string, kodiOpenMedia: KodiOpenMedia) {
-    this.getPlugins().then(pluginList => {
+    this.getPlugins().then((pluginList) => {
       const plugin = pluginList[pluginKey];
 
       const toastMessage = 'toasts.kodi.open';
@@ -337,7 +339,7 @@ export class KodiPluginService {
 
       return from(this.getOpenRemoteAfterClickOnPlaySetting())
         .pipe(
-          switchMap(openRemoteAfterClickOnPlay => {
+          switchMap((openRemoteAfterClickOnPlay) => {
             const openMedia: OpenMedia = {
               movieTraktId: kodiOpenMedia.movie ? kodiOpenMedia.movie.traktId : null,
               showTraktId: kodiOpenMedia.show ? kodiOpenMedia.show.traktId : null,
@@ -350,7 +352,7 @@ export class KodiPluginService {
 
             return this.openViaPlaylist(url, openMedia, openRemoteAfterClickOnPlay);
           }),
-          tap(done => {
+          tap((done) => {
             if (!done) {
               this.toastService.simpleMessage('toasts.kodi.failedToOpen');
               return;
@@ -485,7 +487,7 @@ export class KodiPluginService {
   }
 
   private getPluginParams(url: string, rpl: MediaReplacement) {
-    Object.keys(rpl).forEach(key => {
+    Object.keys(rpl).forEach((key) => {
       const value = escapeText(rpl[key]);
 
       if (!key.match(/\+/g)) {

@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { finalize } from 'rxjs/operators';
 import { KodiPluginList } from '../entities/kodi-plugin';
 import { KodiPluginService } from '../services/kodi-plugin.service';
-import { ToastService } from '@wako-app/mobile-sdk';
+import { ToastService } from '../services/toast.service';
 
 interface PluginArray {
   key: string;
@@ -37,17 +37,17 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.refresh();
 
-    this.kodiPluginService.getOpenRemoteAfterClickOnPlaySetting().then(openRemoteAfterClickOnPlay => {
+    this.kodiPluginService.getOpenRemoteAfterClickOnPlaySetting().then((openRemoteAfterClickOnPlay) => {
       this.openRemoteAfterClickOnPlay = openRemoteAfterClickOnPlay;
     });
   }
 
   private refresh() {
-    this.kodiPluginService.getPluginUrl().then(url => {
+    this.kodiPluginService.getPluginUrl().then((url) => {
       this.pluginsUrl = url;
     });
 
-    this.kodiPluginService.getPlugins().then(plugins => {
+    this.kodiPluginService.getPlugins().then((plugins) => {
       this.pluginsList = plugins;
 
       this.pluginArray = [];
@@ -56,7 +56,7 @@ export class SettingsComponent implements OnInit {
         return;
       }
 
-      Object.keys(plugins).forEach(key => {
+      Object.keys(plugins).forEach((key) => {
         const plugin = plugins[key];
         this.pluginArray.push({
           key,
@@ -87,12 +87,12 @@ export class SettingsComponent implements OnInit {
           },
           {
             text: 'Ok',
-            handler: data => {
+            handler: (data) => {
               this.isLoading = true;
               this.kodiPluginService
                 .setPluginsFromUrl(data.url)
                 .pipe(finalize(() => (this.isLoading = false)))
-                .subscribe(success => {
+                .subscribe((success) => {
                   if (success) {
                     this.toastService.simpleMessage('toasts.kodi-open-button.plugingUrlAdded');
                     this.refresh();
@@ -104,7 +104,7 @@ export class SettingsComponent implements OnInit {
           }
         ]
       })
-      .then(alert => {
+      .then((alert) => {
         alert.present();
       });
   }

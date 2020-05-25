@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PluginBaseService } from '@wako-app/mobile-sdk';
+import { Episode, Movie, PluginBaseService, Show } from '@wako-app/mobile-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { KodiPluginService } from './kodi-plugin.service';
 import { logData } from './tools';
@@ -30,6 +30,29 @@ export class PluginService extends PluginBaseService {
     this.translate.setTranslation(lang, translations);
   }
 
-  customAction(action: string, data: any): any {
+  customAction(action: string, data: any): any {}
+
+  afterEpisodeMiddleware(show: Show, episode: Episode): Promise<Episode> {
+    return Promise.resolve(undefined);
+  }
+
+  afterMovieMiddleware(movie: Movie): Promise<Movie> {
+    return Promise.resolve(undefined);
+  }
+
+  afterShowMiddleware(show: Show): Promise<Show> {
+    return Promise.resolve(undefined);
+  }
+
+  beforeEpisodeMiddleware(show: Show, episode: Episode): Promise<Episode> {
+    return Promise.resolve(undefined);
+  }
+
+  beforeMovieMiddleware(movie: Movie): Promise<Movie> {
+    return Promise.resolve(undefined);
+  }
+
+  beforeShowMiddleware(show: Show): Promise<Show> {
+    return Promise.resolve(undefined);
   }
 }

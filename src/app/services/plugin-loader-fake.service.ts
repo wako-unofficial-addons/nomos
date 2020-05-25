@@ -1,16 +1,7 @@
-import { ComponentFactoryResolver, Injectable, Injector, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
 
-import {
-  PluginAction,
-  PluginBaseService,
-  PluginDetail,
-  PluginManifest,
-  WakoBaseHttpService,
-  WakoPluginLoaderService
-} from '@wako-app/mobile-sdk';
+import { PluginBaseService, PluginDetail, PluginManifest, WakoBaseHttpService, WakoPluginLoaderService } from '@wako-app/mobile-sdk';
 import { forkJoin, from, of, throwError } from 'rxjs';
-
-import { Storage } from '@ionic/storage';
 import { catchError, mapTo, switchMap, tap } from 'rxjs/operators';
 import { PluginModule } from '../../../projects/plugin/src/plugin/plugin.module';
 
@@ -18,8 +9,8 @@ import { PluginModule } from '../../../projects/plugin/src/plugin/plugin.module'
   providedIn: 'root'
 })
 export class PluginLoaderFakeService extends WakoPluginLoaderService {
-  constructor(storage: Storage, cfr: ComponentFactoryResolver, injector: Injector) {
-    super(storage, cfr, injector);
+  constructor(cfr: ComponentFactoryResolver, injector: Injector) {
+    super(cfr, injector);
   }
 
   install(manifestUrl: string, lang: string, loadIt = true) {

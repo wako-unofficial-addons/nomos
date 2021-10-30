@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { ActionSheetController, ModalController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
-import { from, NEVER, of } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import {
   escapeText,
@@ -15,12 +12,15 @@ import {
   OpenMedia,
   replacer,
   WakoCacheService,
-  WakoHttpRequestService
+  WakoHttpRequestService,
+  WakoStorage
 } from '@wako-app/mobile-sdk';
-import { KodiPlugin, KodiPluginList } from '../entities/kodi-plugin';
+import { from, NEVER, of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { KodiOpenMedia } from '../entities/kodi-open-media';
-import { logData } from './tools';
+import { KodiPlugin, KodiPluginList } from '../entities/kodi-plugin';
 import { ToastService } from './toast.service';
+import { logData } from './tools';
 
 const CACHE_KEY_PLUGINS = 'CACHE_KEY_PLUGINS';
 const CACHE_TIMEOUT_PLUGINS = '1d';
@@ -29,9 +29,8 @@ const CACHE_TIMEOUT_PLUGINS = '1d';
 export class KodiPluginService {
   constructor(
     private toastService: ToastService,
-    private storage: Storage,
+    private storage: WakoStorage,
     private actionSheetController: ActionSheetController,
-    private modalCtrl: ModalController,
     private translateService: TranslateService
   ) {}
 

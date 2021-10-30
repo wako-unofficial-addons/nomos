@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Episode, Movie, PluginBaseService, Show } from '@wako-app/mobile-sdk';
+import {
+  Episode,
+  ExplorerFile,
+  ExplorerFolderItem,
+  KodiOpenParams,
+  Movie,
+  OpenMedia,
+  PluginBaseService,
+  Show,
+  WakoFileActionButton
+} from '@wako-app/mobile-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { KodiPluginService } from './kodi-plugin.service';
 import { logData } from './tools';
@@ -54,5 +64,19 @@ export class PluginService extends PluginBaseService {
 
   beforeShowMiddleware(show: Show): Promise<Show> {
     return Promise.resolve(undefined);
+  }
+
+  fetchExplorerFolderItem(): Promise<ExplorerFolderItem | ExplorerFolderItem[]> {
+    throw new Error('Method not implemented.');
+  }
+  getFileActionButtons(
+    file: ExplorerFile,
+    title?: string,
+    posterUrl?: string,
+    seekTo?: number,
+    openMedia?: OpenMedia,
+    kodiOpenParams?: KodiOpenParams
+  ): Promise<WakoFileActionButton[]> {
+    throw new Error('Method not implemented.');
   }
 }

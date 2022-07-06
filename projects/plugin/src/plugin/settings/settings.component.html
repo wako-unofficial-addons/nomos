@@ -1,38 +1,44 @@
-  <ion-list lines="full">
-    <ion-list-header>
-      <ion-label>
-        <ion-icon name="cog" slot="start"></ion-icon>
-        {{ 'pages.kodi-open-button.list.header' | translate }}
-      </ion-label>
-      <ion-spinner *ngIf="isLoading"></ion-spinner>
-    </ion-list-header>
-    <ion-item button (click)="setUrl()">
-      {{ 'pages.kodi-open-button.list.pluginsUrl' | translate }}
-      {{ pluginsUrl ? pluginsUrl : ('pages.kodi-open-button.list.noUrl' | translate) }}
-    </ion-item>
-  </ion-list>
+<ion-list lines="full">
+  <ion-list-header>
+    <ion-label>
+      <ion-icon name="cog" slot="start"></ion-icon>
+      {{ 'pages.kodi-open-button.list.header' | translate }}
+    </ion-label>
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+  </ion-list-header>
+  <ion-item button (click)="setUrl()">
+    {{ 'pages.kodi-open-button.list.pluginsUrl' | translate }}
+    {{ pluginsUrl ? pluginsUrl : ('pages.kodi-open-button.list.noUrl' | translate) }}
+  </ion-item>
+</ion-list>
 
-  <ion-list lines="full">
-    <ion-list-header>
-      <ion-label>
-        {{ 'pages.kodi-open-button.openRemoteList.header' | translate }}
-      </ion-label>
-    </ion-list-header>
-    <ion-item>
-      <ion-label> {{ 'pages.kodi-open-button.openRemoteList.item' | translate }}</ion-label>
-      <ion-toggle [ngModel]="openRemoteAfterClickOnPlay" (ionChange)="openRemoteAfterClickOnPlayChange($event.detail.checked)"></ion-toggle>
-    </ion-item>
-  </ion-list>
+<ion-list lines="full">
+  <ion-list-header>
+    <ion-label>
+      {{ 'pages.kodi-open-button.openRemoteList.header' | translate }}
+    </ion-label>
+  </ion-list-header>
+  <ion-item>
+    <ion-label> {{ 'pages.kodi-open-button.openRemoteList.item' | translate }}</ion-label>
+    <ion-toggle
+      [ngModel]="openRemoteAfterClickOnPlay"
+      (ionChange)="openRemoteAfterClickOnPlayChange($any($event).detail.checked)"
+    ></ion-toggle>
+  </ion-item>
+</ion-list>
 
-  <ion-list lines="full" *ngIf="pluginsList">
-    <ion-list-header>
-      <ion-label>
-        <ion-icon name="list" slot="start"></ion-icon>
-        {{ 'pages.kodi-open-button.pluginList.header' | translate }}
-      </ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let plugin of pluginArray">
-      <ion-label>{{ plugin.name }} </ion-label>
-      <ion-toggle [ngModel]="plugin.enabled" (ionChange)="toggleProvider(plugin.key, $event.detail.checked)"></ion-toggle>
-    </ion-item>
-  </ion-list>
+<ion-list lines="full" *ngIf="pluginsList">
+  <ion-list-header>
+    <ion-label>
+      <ion-icon name="list" slot="start"></ion-icon>
+      {{ 'pages.kodi-open-button.pluginList.header' | translate }}
+    </ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let plugin of pluginArray">
+    <ion-label>{{ plugin.name }} </ion-label>
+    <ion-toggle
+      [ngModel]="plugin.enabled"
+      (ionChange)="toggleProvider(plugin.key, $any($event).detail.checked)"
+    ></ion-toggle>
+  </ion-item>
+</ion-list>

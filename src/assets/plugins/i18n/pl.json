@@ -1,0 +1,34 @@
+{
+  "pages": {
+    "kodi-open-button": {
+      "title": "Przycisk odtwórz w Kodi",
+      "list": {
+        "header": "Konfiguracja",
+        "pluginsUrl": "Adres URL wtyczek:",
+        "noUrl": "nic nie ustawiono"
+      },
+      "openRemoteList": {
+        "header": "Pilot",
+        "item": "Otwórz pilota po kliknięciu"
+      },
+      "pluginList": {
+        "header": "Wtyczki"
+      }
+    }
+  },
+  "toasts": {
+    "kodi": {
+      "noSupportedPluginsInstalled": "Ałć... Żadna ze wspieranych wtyczek nie jest zainstalowana, zainstaluj przynajmniej jedną ze wspieranych wtyczek.",
+      "failedToOpen": "Błąd podczas otwierania"
+    },
+    "pluginsUpdated": "Wtyczki zostały zaktualizowane"
+  },
+  "shared": {
+    "buttonOpenKodi": "Odtwórz na Kodi"
+  },
+  "actionSheets": {
+    "kodi": {
+      "openTitle": "Odtwórz na Kodi używając..."
+    }
+  }
+}

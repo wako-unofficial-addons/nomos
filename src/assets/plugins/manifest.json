@@ -6,8 +6,8 @@
   "author": "Davy",
   "description": "Allow to open Movie/TV Show on your favorite Kodi add-on",
   "actions": ["movies", "episodes", "episodes-item-option"],
-  "entryPointV3": "https://raw.githubusercontent.com/wako-unofficial-addons/nomos/master/dist/plugin.js",
   "entryPointV2": "https://raw.githubusercontent.com/wako-unofficial-addons/nomos/old-wako/dist/plugin.js",
+  "entryPointV3": "/plugin.js",
   "languages": {
     "en": "https://raw.githubusercontent.com/wako-unofficial-addons/nomos/master/dist/i18n/en.json",
     "fr": "https://raw.githubusercontent.com/wako-unofficial-addons/nomos/master/dist/i18n/fr.json",

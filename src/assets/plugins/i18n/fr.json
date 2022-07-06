@@ -1,0 +1,34 @@
+{
+  "pages": {
+    "kodi-open-button": {
+      "title": "Bouton Ouvrir",
+      "list": {
+        "header": "Configuration",
+        "pluginsUrl": "Plugins URL:",
+        "noUrl": "aucune"
+      },
+      "openRemoteList": {
+        "header": "Télécommande",
+        "item": "Ouvrir la télécommande après avoir cliqué"
+      },
+      "pluginList": {
+        "header": "Plugins"
+      }
+    }
+  },
+  "toasts": {
+    "kodi": {
+      "noSupportedPluginsInstalled": "Aïe, aucun des plugins supportés n'est installé, veuillez en installer au moins un.",
+      "failedToOpen": "N'a pas réussi à ouvrir"
+    },
+    "pluginsUpdated": "Les plugins ont été mis à jour"
+  },
+  "shared": {
+    "buttonOpenKodi": "Ouvrir avec Kodi"
+  },
+  "actionSheets": {
+    "kodi": {
+      "openTitle": "Ouvrir avec Kodi via..."
+    }
+  }
+}

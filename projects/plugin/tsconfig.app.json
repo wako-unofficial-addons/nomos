@@ -2,18 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/plugins",
-    "types": [],
-    "paths": {
-      "@angular/*": [
-        "./node_modules/@angular/*"
-      ],
-      "rxjs": [
-        "./node_modules/rxjs"
-      ],
-      "rxjs/*": [
-        "./node_modules/rxjs/*"
-      ]
-    }
+    "types": []
   },
   "files": ["./src/main.ts"]
 }

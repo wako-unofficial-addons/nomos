@@ -1,0 +1,45 @@
+{
+  "pages": {
+    "kodi-open-button": {
+      "title": "Kodi Open Button",
+      "list": {
+        "header": "Setup",
+        "pluginsUrl": "Plugins URL:",
+        "noUrl": "Click here to add one"
+      },
+      "openRemoteList": {
+        "header": "Remote",
+        "item": "Open remote after clicking"
+      },
+      "pluginList": {
+        "header": "Plugins"
+      }
+    }
+  },
+  "toasts": {
+    "kodi": {
+      "open": "Open on {{hostName}} using {{pluginName}}",
+      "hostUnreachable": "Ouch, your kodi host {{hostName}} is unreachable",
+      "noHost": "No host set for kodi",
+      "noSupportedPluginsInstalled": "Ouch, None of the supported plugins are installed, please install at least one of them",
+      "failedToOpen": "Failed to open"
+    },
+    "kodi-open-button": {
+      "plugingUrlAdded": "Plugins added",
+      "plugingUrlFailedToAdd": "Failed to add plugins, please check the given URL"
+    },
+    "pluginsUpdated": "Plugins have been updated"
+  },
+  "shared": {
+    "buttonOpenKodi": "Open on Kodi"
+  },
+  "actionSheets": {
+    "kodi": {
+      "openTitle": "Open with Kodi using..."
+    }
+  },
+  "alerts": {
+    "okButton": "Ok",
+    "cancelButton": "Cancel"
+  }
+}

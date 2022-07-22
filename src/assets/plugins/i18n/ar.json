@@ -1,0 +1,45 @@
+{
+  "pages": {
+    "kodi-open-button": {
+      "title": "زر فتح كودي",
+      "list": {
+        "header": "تنصيب",
+        "pluginsUrl": "رابط الإضافات:",
+        "noUrl": "إضغط هنا للإضافة"
+      },
+      "openRemoteList": {
+        "header": "تحكّم",
+        "item": "فتح جهاز التحكّم بعد الضغط"
+      },
+      "pluginList": {
+        "header": "الإضافات"
+      }
+    }
+  },
+  "toasts": {
+    "kodi": {
+      "open": "فتح على {{hostName}} باستخدام {{pluginName}}",
+      "hostUnreachable": "أوه، لا يمكن الوصول إلى مضيف كودي {{hostName}}",
+      "noHost": "No host set for kodi",
+      "noSupportedPluginsInstalled": "أوه، لم يتمّ تثبيت أي من الإضافات المدعومة ، الرجاء تثبيت واحد منها على الأقل",
+      "failedToOpen": "فشل في الفتح"
+    },
+    "kodi-open-button": {
+      "plugingUrlAdded": "تمّت إضافة الإضافات",
+      "plugingUrlFailedToAdd": "فشلت إضافة الإضافات ، الرجاء التحقّق من عنوان الرابط المحدَّد"
+    },
+    "pluginsUpdated": "تمّ تحديث الإضافات"
+  },
+  "shared": {
+    "buttonOpenKodi": "فتح على كودي"
+  },
+  "actionSheets": {
+    "kodi": {
+      "openTitle": "فتح على كودي باستخدام..."
+    }
+  },
+  "alerts": {
+    "okButton": "موافق",
+    "cancelButton": "إلغاء"
+  }
+}

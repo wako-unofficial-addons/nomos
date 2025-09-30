@@ -16,15 +16,24 @@ import { KodiPluginService } from './services/kodi-plugin.service';
 import { ToastService } from './services/toast.service';
 import { SettingsComponent } from './settings/settings.component';
 
-const components = [MovieButtonComponent, EpisodeButtonComponent, EpisodeItemOptionComponent, SettingsComponent, OpenButtonComponent];
+const components = [
+  MovieButtonComponent,
+  EpisodeButtonComponent,
+  EpisodeItemOptionComponent,
+  SettingsComponent,
+  OpenButtonComponent,
+];
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule.forRoot(),    IonicStorageModule.forRoot({}), TranslateModule.forRoot()],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot({}),
+    TranslateModule.forRoot(),
+  ],
   declarations: [...components],
-  entryComponents: [...components],
-  providers: [PluginService, KodiPluginService, ToastService,
-    ...WakoProviders,
-  ], // Add your services here. Do not use provideIn: 'root' in your services
+  providers: [PluginService, KodiPluginService, ToastService, ...WakoProviders], // Add your services here. Do not use provideIn: 'root' in your services
 })
 export class PluginModule extends PluginBaseModule {
   static pluginService = PluginService;

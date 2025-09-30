@@ -4,7 +4,9 @@
       <ion-icon name="cog" slot="start"></ion-icon>
       {{ 'pages.kodi-open-button.list.header' | translate }}
     </ion-label>
-    <ion-spinner *ngIf="isLoading"></ion-spinner>
+    @if (isLoading) {
+      <ion-spinner></ion-spinner>
+    }
   </ion-list-header>
   <ion-item button (click)="setUrl()">
     {{ 'pages.kodi-open-button.list.pluginsUrl' | translate }}
@@ -27,18 +29,22 @@
   </ion-item>
 </ion-list>
 
-<ion-list lines="full" *ngIf="pluginsList">
-  <ion-list-header>
-    <ion-label>
-      <ion-icon name="list" slot="start"></ion-icon>
-      {{ 'pages.kodi-open-button.pluginList.header' | translate }}
-    </ion-label>
-  </ion-list-header>
-  <ion-item *ngFor="let plugin of pluginArray">
-    <ion-label>{{ plugin.name }} </ion-label>
-    <ion-toggle
-      [ngModel]="plugin.enabled"
-      (ionChange)="toggleProvider(plugin.key, $any($event).detail.checked)"
-    ></ion-toggle>
-  </ion-item>
-</ion-list>
+@if (pluginsList) {
+  <ion-list lines="full">
+    <ion-list-header>
+      <ion-label>
+        <ion-icon name="list" slot="start"></ion-icon>
+        {{ 'pages.kodi-open-button.pluginList.header' | translate }}
+      </ion-label>
+    </ion-list-header>
+    @for (plugin of pluginArray; track plugin) {
+      <ion-item>
+        <ion-label>{{ plugin.name }} </ion-label>
+        <ion-toggle
+          [ngModel]="plugin.enabled"
+          (ionChange)="toggleProvider(plugin.key, $any($event).detail.checked)"
+        ></ion-toggle>
+      </ion-item>
+    }
+  </ion-list>
+}

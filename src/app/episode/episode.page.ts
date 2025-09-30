@@ -3,9 +3,10 @@ import { PluginLoaderService } from '../services/plugin-loader.service';
 import { Episode, Show } from '@wako-app/mobile-sdk';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'episode.page.html',
-  styleUrls: ['episode.page.scss']
+    selector: 'app-tab1',
+    templateUrl: 'episode.page.html',
+    styleUrls: ['episode.page.scss'],
+    standalone: false
 })
 export class EpisodePage implements OnInit {
   @ViewChild('episodeRef', { read: ViewContainerRef, static: true })

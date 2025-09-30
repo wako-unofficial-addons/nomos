@@ -3,9 +3,10 @@ import { KodiPluginService } from '../services/kodi-plugin.service';
 import { Episode, Movie, Show } from '@wako-app/mobile-sdk';
 
 @Component({
-  selector: 'wk-open-button',
-  templateUrl: './open-button.component.html',
-  styleUrls: ['./open-button.component.scss']
+    selector: 'wk-open-button',
+    templateUrl: './open-button.component.html',
+    styleUrls: ['./open-button.component.scss'],
+    standalone: false
 })
 export class OpenButtonComponent {
   @Input() movie: Movie;
